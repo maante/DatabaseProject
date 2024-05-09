@@ -1,0 +1,11 @@
+CREATE DATABASE escuela;
+USE escuela
+CREATE TABLE salones (idsalon VARCHAR(8), capacidad int, tipo VARCHAR(3), PRIMARY KEY(idsalon);
+CREATE TABLE reservacion(idsalon varchar(8), nombre varchar(30), fechahora date, duracion int, PRIMARY KEY(idsalon, nombre, fechahora);
+CREATE TABLE periodos (titulo VARCHAR(20), fechainicio DATE, fechafin DATE, PRIMARY KEY(titulo));
+CREATE TABLE horario(clave varchar(10) NOT NULL, secc int, diasem int, horamin time, duracion int, periodo varchar(20), semestre int, idsalon varchar(8), PRIMARY KEY(clave, secc));
+CREATE TABLE cursos (clave VARCHAR(10) NOT NULL , secc int, titulo VARCHAR(30), prof VARCHAR(30), PRIMARY KEY(clave, secc));
+
+ALTER TABLE cursos ADD FOREIGN KEY(clave) REFERENCES horario(clave);
+ALTER TABLE horario
+ADD FOREIGN KEY(clave) REFERENCES cursos(clave);
